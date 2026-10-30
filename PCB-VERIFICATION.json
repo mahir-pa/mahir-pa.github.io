@@ -1,0 +1,44 @@
+[
+  {
+    "board": "Scanner 2.0",
+    "dimensions_mm": [
+      48.5,
+      85.5
+    ],
+    "footprints": 21,
+    "pads": 87,
+    "segments": 229,
+    "vias": 4,
+    "filled_polygons": 9,
+    "edge_primitives": 1,
+    "holes": 73,
+    "onboard_sensor_symbols": 0,
+    "schematic_instances": 43,
+    "schematic_wires": 102,
+    "approximate_models": [
+      "D1"
+    ],
+    "model_sources": "Official KiCad packages3D models, converted from VRML with millimeter scaling."
+  },
+  {
+    "board": "Receiver",
+    "dimensions_mm": [
+      43.5,
+      65.5
+    ],
+    "footprints": 19,
+    "pads": 76,
+    "segments": 171,
+    "vias": 2,
+    "filled_polygons": 6,
+    "edge_primitives": 1,
+    "holes": 60,
+    "onboard_sensor_symbols": 0,
+    "schematic_instances": 39,
+    "schematic_wires": 77,
+    "approximate_models": [
+      "D1"
+    ],
+    "model_sources": "Official KiCad packages3D models, converted from VRML with millimeter scaling."
+  }
+]
