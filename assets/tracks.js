@@ -1,1 +1,130 @@
-window.portfolioTracks=[{"id": "ZoSD4l32m2I", "start": 28, "title": "Memory Box", "artist": "Peter Cat Recording Co."}, {"id": "oplra1FJxWI", "start": 0, "title": "Don't Look Back in Anger", "artist": "Oasis"}, {"id": "1-W6whvn8Bs", "start": 0, "title": "Selfless", "artist": "The Strokes"}, {"id": "GmK5_lnQUbE", "start": 0, "title": "Sweet Caroline", "artist": "Neil Diamond"}, {"id": "fJ9rUzIMcZQ", "start": 0, "title": "Bohemian Rhapsody", "artist": "Queen"}, {"id": "Dro607rLuls", "start": 0, "title": "Control Room", "artist": "Peter Cat Recording Co."}, {"id": "8ifjLdWj4y0", "start": 0, "title": "Theme from New York, New York", "artist": "Frank Sinatra"}, {"id": "LNq4xox99HY", "start": 0, "title": "Ode to the Mets", "artist": "The Strokes"}, {"id": "YuKfiH0Scao", "start": 0, "title": "Ain't No Sunshine", "artist": "Bill Withers"}, {"id": "dvgZkm1xWPE", "start": 0, "title": "Viva la Vida", "artist": "Coldplay"}, {"id": "CnEIT_RJsq4", "start": 110, "title": "Clown on the 22nd Floor + Happiness", "artist": "Peter Cat Recording Co."}, {"id": "mQER0A0ej0M", "start": 0, "title": "Hey Jude", "artist": "The Beatles"}, {"id": "o4qsjmLxhow", "start": 0, "title": "The Adults Are Talking", "artist": "The Strokes"}, {"id": "l6_w3887Rwo", "start": 0, "title": "Tennessee Whiskey", "artist": "Chris Stapleton"}, {"id": "Cl6Rz1Uvi2M", "start": 0, "title": "Pull Me Out of This", "artist": "Fred again.."}];
+window.portfolioTracks=[
+  {
+    "title": "Topknot",
+    "artist": "Cornershop feat. Bubbley Kaur",
+    "id": "uRKkBhk2yVM",
+    "start": 0,
+    "cover": "images/covers/topknot.jpg",
+    "album": "Cornershop & the Double-O Groove Of"
+  },
+  {
+    "title": "Smart Dogs",
+    "artist": "Kula Shaker",
+    "id": "bRPl0N352vc",
+    "start": 0,
+    "cover": "images/covers/smart-dogs.jpg",
+    "album": "K"
+  },
+  {
+    "title": "Twist and Shout",
+    "artist": "The Beatles",
+    "id": "2RicaUqd9Hg",
+    "start": 0,
+    "cover": "images/covers/twist-and-shout.jpg",
+    "album": "Please Please Me"
+  },
+  {
+    "title": "Instant Crush (Drumless Edition)",
+    "artist": "Daft Punk feat. Julian Casablancas",
+    "id": "kCzI_UxSGMg",
+    "start": 0,
+    "cover": "images/covers/instant-crush-drumless.jpg",
+    "album": "Random Access Memories (Drumless Edition)"
+  },
+  {
+    "title": "Banana Pancakes",
+    "artist": "Jack Johnson",
+    "id": "m-v-LGOfaKo",
+    "start": 0,
+    "cover": "images/covers/banana-pancakes.jpg",
+    "album": "In Between Dreams (Bonus Track Version)"
+  },
+  {
+    "title": "Control Room",
+    "artist": "Peter Cat Recording Co.",
+    "id": "Dro607rLuls",
+    "start": 0,
+    "cover": "images/covers/control-room.jpg",
+    "album": "Beta"
+  },
+  {
+    "title": "Life Is Simple in the Moonlight",
+    "artist": "The Strokes",
+    "id": "Ke4Zh0QkPFw",
+    "start": 0,
+    "cover": "images/covers/life-is-simple.jpg",
+    "album": "Angles"
+  },
+  {
+    "title": "Selfless",
+    "artist": "The Strokes",
+    "id": "1-W6whvn8Bs",
+    "start": 0,
+    "cover": "images/covers/selfless.jpg",
+    "album": "The New Abnormal"
+  },
+  {
+    "title": "T.N.T.",
+    "artist": "AC/DC",
+    "id": "CiJeSSzu9Bo",
+    "start": 0,
+    "cover": "images/covers/tnt.jpg",
+    "album": "High Voltage"
+  },
+  {
+    "title": "OBLIVIUS",
+    "artist": "The Strokes",
+    "id": "jEjdwhVuW74",
+    "start": 0,
+    "cover": "images/covers/oblivius.jpg",
+    "album": "Future Present Past - EP"
+  },
+  {
+    "title": "Stronger",
+    "artist": "Kanye West",
+    "id": "2ulp_AMut14",
+    "start": 0,
+    "cover": "images/covers/stronger.jpg",
+    "album": "Graduation"
+  },
+  {
+    "title": "Acquiesce",
+    "artist": "Oasis",
+    "id": "cggevmH5LCM",
+    "start": 0,
+    "cover": "images/covers/acquiesce.jpg",
+    "album": "(What's The Story) Morning Glory? [Deluxe Remastered Edition]"
+  },
+  {
+    "title": "Saibo Re",
+    "artist": "Kirtidan Gadhvi & Priya Saraiya",
+    "id": "LnEmw07VElA",
+    "start": 0,
+    "cover": "images/covers/saibo-re.jpg",
+    "album": "Saibo Re - Single"
+  },
+  {
+    "title": "Monta Re",
+    "artist": "Swanand Kirkire & Amitabh Bhattacharya",
+    "id": "99NUJ1cLbBI",
+    "start": 0,
+    "cover": "images/covers/monta-re.jpg",
+    "album": "Lootera (Original Motion Picture Soundtrack)"
+  },
+  {
+    "title": "Sinbad the Sailor",
+    "artist": "Farhan Akhtar & Raman Mahadevan",
+    "id": "eY62RfeviuE",
+    "start": 0,
+    "cover": "images/covers/sinbad-the-sailor.jpg",
+    "album": "Rock On (Original Motion Picture Soundtrack)"
+  },
+  {
+    "title": "Myself",
+    "artist": "Bazzi",
+    "id": "VgKjHh1Y-1Y",
+    "start": 0,
+    "cover": "images/covers/myself.jpg",
+    "album": "COSMIC"
+  }
+];
