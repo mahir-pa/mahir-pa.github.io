@@ -1,6 +1,6 @@
 # Actual PCB explorer — accuracy and interaction notes
 
-Both supplied board files and their matching schematics were inspected. The website includes derived visual assets, not the raw .kicad_pcb or .kicad_sch files. Nothing was uploaded or published.
+Both supplied board files and their matching schematics were inspected. The published portfolio includes derived visual assets. The raw .kicad_pcb and .kicad_sch files remain local and are excluded from this repository.
 
 | Source | Board size | Footprints | Pads | Track segments | Vias | Filled polygons |
 |---|---|---:|---:|---:|---:|---:|
