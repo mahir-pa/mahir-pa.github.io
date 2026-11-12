@@ -1,0 +1,101 @@
+.garage-section {
+  display: grid;
+  grid-template-columns: minmax(0, .72fr) minmax(0, 1.6fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  align-items: center;
+  border-top: 1px solid var(--line);
+}
+.garage-copy h2 {
+  margin: .45rem 0 1rem;
+  font-size: clamp(2.75rem, 6vw, 5.75rem);
+  line-height: .98;
+  letter-spacing: -.065em;
+}
+.garage-copy h2 span { color: var(--copper); }
+.garage-copy > p:not(.eyebrow) { max-width: 32ch; }
+.garage-copy small { display: block; margin-top: 1.5rem; color: var(--muted); }
+.garage-copy a { text-decoration: underline; text-underline-offset: .2em; }
+.garage-display {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #41495e;
+  border-radius: 1rem;
+  color: #f2efe8;
+  background: #151b29;
+  box-shadow: 0 1.25rem 3rem var(--shadow);
+}
+.garage-display figcaption,
+.garage-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .45rem .8rem;
+  padding: .75rem 1rem;
+  min-height: 3.35rem;
+}
+.garage-display figcaption {
+  border-top: 3px solid #f24a4f;
+  border-bottom: 1px solid #41495e;
+  color: #d0d5e1;
+  font: 600 .68rem/1.4 monospace;
+  letter-spacing: .12em;
+}
+.garage-display figcaption span:last-child { color: #ffcb72; }
+.garage-stage {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 35 / 19;
+  background:
+    radial-gradient(ellipse at 52% 54%, #475069 0%, #273145 48%, transparent 78%),
+    #151b29;
+}
+.garage-stage::before {
+  position: absolute;
+  inset: 0;
+  content: '';
+  z-index: -1;
+  background:
+    repeating-linear-gradient(0deg, #d8e3ff17 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(90deg, #d8e3ff17 0 1px, transparent 1px 30px);
+  mask-image: radial-gradient(ellipse, black, transparent 72%);
+}
+.garage-poster,
+.garage-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.garage-poster { object-fit: contain; }
+.garage-stage canvas { touch-action: pan-y; cursor: grab; }
+.garage-stage canvas:active { cursor: grabbing; }
+.garage-stage[data-mode="interactive"] .garage-poster { visibility: hidden; }
+.garage-controls { border-top: 1px solid #41495e; }
+.garage-controls p { margin: 0; font-size: .76rem; color: #d0d5e1; }
+.garage-button,
+.garage-controls button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  padding: .2rem .55rem;
+  border: 1px solid #58647c;
+  border-radius: .35rem;
+  color: #f2efe8;
+  background: #262e40;
+  font: inherit;
+  font-size: .8rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.garage-button:hover,
+.garage-controls button:hover { border-color: #ffcb72; }
+.garage-display :focus-visible { outline: 2px solid #ffcb72; outline-offset: -2px; }
+.garage-display [hidden] { display: none; }
+#garage-orbit:not([hidden]) { display: flex; gap: .25rem; }
+@media (max-width: 760px) {
+  .garage-section { grid-template-columns: minmax(0, 1fr); }
+  .garage-copy small { margin-top: .9rem; }
+}
