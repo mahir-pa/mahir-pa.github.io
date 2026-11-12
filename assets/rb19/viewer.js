@@ -10,7 +10,7 @@ export async function showCar(stage, controls, onContextLost) {
   renderer.toneMappingExposure = 1.04;
 
   const scene = new Three.Scene();
-  const camera = new Three.PerspectiveCamera(32, 1, .1, 50);
+  const camera = new Three.PerspectiveCamera(36, 1, .1, 50);
   const turntable = new Three.Group();
   scene.add(turntable);
   scene.add(new Three.HemisphereLight(0xf3f6ff, 0x596476, 1.35));
@@ -74,13 +74,57 @@ export async function showCar(stage, controls, onContextLost) {
   let previousX;
   let renderWidth = 0;
   let renderHeight = 0;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const spinButton = controls.querySelector('[data-view="spin"]');
+  const spinRate = 2 * Math.PI / 45;
+  let spinning = !reducedMotion.matches;
+  let inView = false;
+  let frame = 0;
+  let previousTime = 0;
+
+  function syncSpin() {
+    spinButton.textContent = spinning ? 'Pause spin' : 'Resume spin';
+    if (spinning && inView && !document.hidden && pointer === null) {
+      if (!frame) frame = requestAnimationFrame(animate);
+    } else {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      previousTime = 0;
+    }
+  }
+
+  function animate(time) {
+    if (!previousTime) previousTime = time;
+    const elapsed = time - previousTime;
+    if (elapsed >= 30) {
+      angle = (angle + spinRate * Math.min(elapsed, 80) / 1000) % (2 * Math.PI);
+      previousTime = time;
+      render();
+    }
+    frame = requestAnimationFrame(animate);
+  }
+
+  function updateMotionPreference(event) {
+    spinning = !event.matches;
+    syncSpin();
+  }
+
+  const visibility = new IntersectionObserver(([entry]) => {
+    inView = entry.isIntersecting;
+    syncSpin();
+  });
+  visibility.observe(stage);
+  document.addEventListener('visibilitychange', syncSpin);
+  reducedMotion.addEventListener('change', updateMotionPreference);
+  syncSpin();
 
   function render() {
     const width = stage.clientWidth;
     const height = stage.clientHeight;
     if (!width || !height) return;
     camera.aspect = width / height;
-    camera.position.set(0, 3.15 / zoom, 6.9 / zoom);
+    const distance = Math.max(1, 1.67 / camera.aspect) / zoom;
+    camera.position.set(0, 2.72 * distance, 5.45 * distance);
     camera.lookAt(0, -.1, 0);
     camera.updateProjectionMatrix();
     turntable.rotation.y = angle;
@@ -101,6 +145,7 @@ export async function showCar(stage, controls, onContextLost) {
       case 'in': zoom = Math.min(1.65, zoom * 1.16); break;
       case 'out': zoom = Math.max(.72, zoom / 1.16); break;
       case 'reset': angle = initialAngle; zoom = 1; break;
+      case 'spin': spinning = !spinning; syncSpin(); return;
       default: return;
     }
     render();
@@ -111,6 +156,7 @@ export async function showCar(stage, controls, onContextLost) {
     pointer = event.pointerId;
     previousX = event.clientX;
     canvas.setPointerCapture(pointer);
+    syncSpin();
   });
   canvas.addEventListener('pointermove', event => {
     if (pointer !== event.pointerId) return;
@@ -118,8 +164,16 @@ export async function showCar(stage, controls, onContextLost) {
     previousX = event.clientX;
     render();
   });
-  canvas.addEventListener('lostpointercapture', () => { pointer = null; });
+  canvas.addEventListener('lostpointercapture', () => {
+    pointer = null;
+    syncSpin();
+  });
   canvas.addEventListener('webglcontextlost', () => {
+    spinning = false;
+    syncSpin();
+    visibility.disconnect();
+    document.removeEventListener('visibilitychange', syncSpin);
+    reducedMotion.removeEventListener('change', updateMotionPreference);
     resize.disconnect();
     controls.removeEventListener('click', changeView);
     lighting.dispose();

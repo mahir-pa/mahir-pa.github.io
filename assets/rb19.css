@@ -1,10 +1,10 @@
 .garage-section {
   display: grid;
-  grid-template-columns: minmax(0, .72fr) minmax(0, 1.6fr);
-  gap: clamp(1.5rem, 5vw, 5rem);
-  align-items: center;
+  gap: clamp(1.35rem, 3vw, 2.4rem);
+  grid-template-columns: minmax(0, 1fr);
   border-top: 1px solid var(--line);
 }
+.garage-copy { text-align: center; }
 .garage-copy h2 {
   margin: .45rem 0 1rem;
   font-size: clamp(2.75rem, 6vw, 5.75rem);
@@ -12,8 +12,8 @@
   letter-spacing: -.065em;
 }
 .garage-copy h2 span { color: var(--copper); }
-.garage-copy > p:not(.eyebrow) { max-width: 32ch; }
-.garage-copy small { display: block; margin-top: 1.5rem; color: var(--muted); }
+.garage-copy > p:not(.eyebrow) { max-width: 53ch; margin-inline: auto; }
+.garage-copy small { display: block; margin-top: .85rem; color: var(--muted); }
 .garage-copy a { text-decoration: underline; text-underline-offset: .2em; }
 .garage-display {
   margin: 0;
@@ -45,7 +45,7 @@
 .garage-stage {
   position: relative;
   isolation: isolate;
-  aspect-ratio: 35 / 19;
+  aspect-ratio: 2.05;
   background:
     radial-gradient(ellipse at 52% 54%, #475069 0%, #273145 48%, transparent 78%),
     #151b29;
@@ -94,8 +94,7 @@
 .garage-controls button:hover { border-color: #ffcb72; }
 .garage-display :focus-visible { outline: 2px solid #ffcb72; outline-offset: -2px; }
 .garage-display [hidden] { display: none; }
-#garage-orbit:not([hidden]) { display: flex; gap: .25rem; }
+#garage-orbit:not([hidden]) { display: flex; flex-wrap: wrap; gap: .25rem; }
 @media (max-width: 760px) {
-  .garage-section { grid-template-columns: minmax(0, 1fr); }
-  .garage-copy small { margin-top: .9rem; }
+  .garage-stage { aspect-ratio: 1.48; }
 }
