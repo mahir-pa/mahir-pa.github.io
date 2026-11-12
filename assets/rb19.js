@@ -12,10 +12,10 @@ function showFallback(message) {
 }
 
 try {
-  const { showCar } = await import('./rb19/viewer.js?v=2');
+  const { showCar } = await import('./rb19/viewer.js?v=3');
   await showCar(stage, orbit, () => showFallback('3D view lost. Still image restored.'));
   stage.dataset.mode = 'interactive';
-  status.textContent = 'Drag to turn the car.';
+  status.textContent = 'Drag to turn or tilt. Use the tilt buttons on touchscreens.';
   orbit.hidden = false;
 } catch (error) {
   console.warn('RB19 viewer:', error);

@@ -12,6 +12,8 @@ export async function showCar(stage, controls, onContextLost) {
   const scene = new Three.Scene();
   const camera = new Three.PerspectiveCamera(36, 1, .1, 50);
   const turntable = new Three.Group();
+  const carPivot = new Three.Group();
+  turntable.add(carPivot);
   scene.add(turntable);
   scene.add(new Three.HemisphereLight(0xf3f6ff, 0x596476, 1.35));
   const key = new Three.DirectionalLight(0xfff4e3, 1.9);
@@ -37,7 +39,7 @@ export async function showCar(stage, controls, onContextLost) {
     const scale = 4.8 / Math.max(size.x, size.y, size.z);
     car.scale.multiplyScalar(scale);
     car.position.sub(center.multiplyScalar(scale));
-    turntable.add(car);
+    carPivot.add(car);
 
     const shadow = new Three.Mesh(new Three.PlaneGeometry(size.x * scale * 1.55, size.z * scale * 1.15),
       new Three.ShaderMaterial({
@@ -69,9 +71,12 @@ export async function showCar(stage, controls, onContextLost) {
   stage.append(canvas);
   const initialAngle = 1.02;
   let angle = initialAngle;
+  let tilt = 0;
+  const tiltLimit = Math.PI / 6;
   let zoom = 1;
   let pointer = null;
   let previousX;
+  let previousY;
   let renderWidth = 0;
   let renderHeight = 0;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -128,6 +133,7 @@ export async function showCar(stage, controls, onContextLost) {
     camera.lookAt(0, -.1, 0);
     camera.updateProjectionMatrix();
     turntable.rotation.y = angle;
+    carPivot.rotation.z = tilt;
     if (width !== renderWidth || height !== renderHeight) {
       renderer.setSize(width, height, false);
       renderWidth = width;
@@ -138,13 +144,19 @@ export async function showCar(stage, controls, onContextLost) {
 
   const resize = new ResizeObserver(render);
   resize.observe(stage);
+  function tiltBy(delta) {
+    tilt = Three.MathUtils.clamp(tilt + delta, -tiltLimit, tiltLimit);
+  }
+
   function changeView(event) {
     switch (event.target.closest('button')?.dataset.view) {
       case 'left': angle -= .28; break;
       case 'right': angle += .28; break;
       case 'in': zoom = Math.min(1.65, zoom * 1.16); break;
       case 'out': zoom = Math.max(.72, zoom / 1.16); break;
-      case 'reset': angle = initialAngle; zoom = 1; break;
+      case 'tilt-left': tiltBy(.14); break;
+      case 'tilt-right': tiltBy(-.14); break;
+      case 'reset': angle = initialAngle; tilt = 0; zoom = 1; break;
       case 'spin': spinning = !spinning; syncSpin(); return;
       default: return;
     }
@@ -155,13 +167,16 @@ export async function showCar(stage, controls, onContextLost) {
     if (!event.isPrimary || event.button !== 0) return;
     pointer = event.pointerId;
     previousX = event.clientX;
+    previousY = event.clientY;
     canvas.setPointerCapture(pointer);
     syncSpin();
   });
   canvas.addEventListener('pointermove', event => {
     if (pointer !== event.pointerId) return;
     angle += (event.clientX - previousX) * .011;
+    if (event.pointerType !== 'touch') tiltBy((event.clientY - previousY) * .009);
     previousX = event.clientX;
+    previousY = event.clientY;
     render();
   });
   canvas.addEventListener('lostpointercapture', () => {
