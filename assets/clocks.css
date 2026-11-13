@@ -1,0 +1,37 @@
+.site-clocks {
+  display: flex;
+  flex: none;
+  padding: .45rem .15rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.site-clocks > div {
+  display: grid;
+  gap: .2rem;
+  padding-inline: .55rem;
+}
+.site-clocks > div + div { border-left: 1px solid var(--line); }
+.site-clocks span {
+  font-size: .57rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.site-clocks time {
+  font-size: .73rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  white-space: nowrap;
+}
+@media (max-width: 1050px) {
+  .nav:has(.site-clocks) { margin-bottom: 51px; }
+  .site-clocks {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
